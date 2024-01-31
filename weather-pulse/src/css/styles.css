@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
+
+
+body {
+    display: flex;
+    background-color: #30680c;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+.main {
+    width: 700px;
+    max-width: 100%; 
+    border-radius: 20px;
+    background-image: url('../images/raining-background.webp');
+    background-size: cover;
+    background-position: center;
+    position: relative; 
+    overflow: hidden; 
+    padding: 20px; 
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); 
+  }
+
+.top {
+    background-color: rgba(36, 156, 172, 0.5); 
+    padding: 10px;
+    border-radius: 20px 20px 0 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.header{
+    color: whitesmoke;
+    margin: 10px 0px 0px 10px;
+    font-size: 24px;
+    font-weight: bold;    
+    border-radius: 20px 20px 0 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600
+}
+
+.day{
+    padding: 15px;
+    color: whitesmoke;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.temp{
+    padding: 15px;
+    color: whitesmoke;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.sun-time{
+    padding: 15px;
+    color: whitesmoke;
+    font-family: 'Recursive', sans-serif;
+    font-size: 16px;
+}
+
+.description{
+    padding: 15px;
+    color: whitesmoke;
+    font-family: 'Recursive', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.last-refreshed {
+    padding: 10px;
+    color: whitesmoke; 
+    font-size: 11px;
+    font-family: 'Recursive', sans-serif;
+  }
+
+.button{
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    margin-left: auto
+}
