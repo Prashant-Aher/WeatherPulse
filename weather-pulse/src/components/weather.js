@@ -11,10 +11,17 @@ import styled from 'styled-components';
 
 const WeatherIcon = styled.div `color: whitesmoke;`; 
 
+/**
+ * Generates the appropriate weather icon based on the provided weather description.
+ *
+ * @param {string} item - description of the weather as a string
+ * @return {JSX.Element} Icon based on the weather
+ */
 const WeatherReport  = ({ weatherData }) => {
 
   const [lastRefreshed, setLastRefreshed] = useState(moment());     //for tracking last refreshed time
        
+
   const handleRefresh = () => {
     window.location.reload();               //refreshing/reload page
     setLastRefreshed(moment());             // updating last refreshed time
@@ -33,6 +40,12 @@ const WeatherReport  = ({ weatherData }) => {
   });
 
 
+  /**
+   * Generates the appropriate weather icon based on the provided weather description.
+   *
+   * @param {string} item - description of the weather as a string item 
+   * @return {JSXElement} Icon based on the weather
+   */
   function  getCurrentWeatherIcon(item){
        
     let weatherIcon = null;
@@ -52,6 +65,12 @@ const WeatherReport  = ({ weatherData }) => {
   }
 
 
+  /**
+   * A function to convert a degree to a textual description of the wind direction.
+   *
+   * @param {number} degree - The degree to be converted to textual description
+   * @return {string} The textual description of the direction based on the metereological degree
+   */
   function  toTextualDescription(degree){
     if ((degree>337.5 && degree<360)|| (degree>22.5 && degree<22.5)){return 'Northerly';}
     else if(degree>22.5 && degree<67.5){return 'North Easterly';}
@@ -84,8 +103,8 @@ const WeatherReport  = ({ weatherData }) => {
       </div>
 
       <div className="flex-weather">
-        <p className="maxmintemp">Max/Min Temp.: {weatherData.main.temp_max} / {weatherData.main.temp_min} &deg;C </p>
-        <p className="maxmintemp"><FontAwesomeIcon icon={faWind} />   {toTextualDescription(weatherData.wind.deg)}</p>
+        <p className="maxmintemp">Max / Min Temp.: {weatherData.main.temp_max} / {weatherData.main.temp_min} &deg;C </p>
+        <p className="maxmintemp"><FontAwesomeIcon icon={faWind} />   {Math.round((weatherData.wind.speed)*3600/1000)} Km/Hr  {toTextualDescription(weatherData.wind.deg)}</p>
       </div>
 
       <div className="flex-weather">

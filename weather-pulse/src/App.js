@@ -11,12 +11,15 @@ import Forecast from './components/forecast';
     const [lat, setLat] = useState([null]);
     const [long, setLong] = useState([null]);
     const [lastRefreshed] = useState(Date.now());
-    const [forecast, setForecast] = useState([]);
+    const [forecast, setForecast] = useState([null]);
     const [error, setError] = useState(null);
-    const [, setWeatherData] = useState([]);
+    const [, setWeatherData] = useState([null]);
 
 
     useEffect(() => {
+      /**
+       * Asynchronously fetches data and sets latitude, longitude, and weather data based on user's geolocation.
+       */
       const fetchData = async () => {
         try {
           const position = await new Promise((resolve, reject) => {
@@ -70,10 +73,16 @@ import Forecast from './components/forecast';
         .catch(err => {
           setError(err.message);
         });
-
     }, [lat, long, error])
 
 
+    /**
+     * Fetches weather data based on the provided latitude and longitude.
+     *
+     * @param {number} lat - The latitude of the location
+     * @param {number} long - The longitude of the location
+     * @return {Promise} A promise that resolves to the weather data
+     */
     function getWeather(lat, long) {
       return fetch(
         `${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
@@ -90,6 +99,13 @@ import Forecast from './components/forecast';
 
 
     
+    /**
+     * Retrieves the forecast data for the given latitude and longitude.
+     *
+     * @param {number} lat - The latitude.
+     * @param {number} long - The longitude.
+     * @return {Promise} A Promise that resolves to the forecast data in a specific format.
+     */
     function getForecast(lat, long) {
       return fetch(
         `${process.env.REACT_APP_API_URL}/forecast/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
@@ -106,6 +122,12 @@ import Forecast from './components/forecast';
 
 
 
+    /**
+     * Maps the given data to the weather interface format.
+     *
+     * @param {Object} data - The data to be mapped to the weather interface.
+     * @return {Object} The mapped weather interface data.
+     */
     function mapDataToWeatherInterface(data) {
       const mapped = {
         date: data.dt * 1000,                       // convert from seconds to milliseconds
@@ -116,8 +138,7 @@ import Forecast from './components/forecast';
       // Add extra properties for the five day forecast: dt_txt, icon, min, max
       if (data.dt_txt) {
         mapped.dt_txt = data.dt_txt;
-      }
-    
+      }    
       return mapped;
     }
 
@@ -129,11 +150,17 @@ import Forecast from './components/forecast';
     }, [lat, long]);            //whenever lat or long changes
 
     
+    /**
+     * Handle the response from the API request.
+     *
+     * @param {object } response - the response object from the API
+     * @return {Parsed JSON} the parsed JSON data from the response
+     */
     function handleResponse(response) {
       if (response.ok) {
         return response.json();
-      } else {
-        throw new Error("Please Enable your Location in your browser!");
+       } else {
+        throw new Error("Make sure to Enable Location access in your Browser !");
       }
     }
 
@@ -151,7 +178,7 @@ import Forecast from './components/forecast';
         ) : data.cod === '404' ? (
           <div>City not found</div>
         ) : (
-          <div className="App">
+          <div className="body">
             <Dimmer active>
               <Loader>Loading..</Loader>
             </Dimmer>

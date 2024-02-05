@@ -12,6 +12,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const WeatherIcon = styled.div `color: whitesmoke;`;        //styling for weather icons
 
 
+/**
+ * Renders the forecast data based on the props received.
+ *
+ * @param {object} props - the props object containing forecast data
+ * @param {array} data - additional data for the forecast
+ * @return {JSX.Element} the forecast component JSX
+ */
 function Forecast(props, data) {
 
   
