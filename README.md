@@ -1,5 +1,6 @@
 
-![image](https://github.com/Prashant-Aher/WeatherPulse/assets/131543229/a7c9b528-b9eb-406d-a159-02c6b4b7ca64)
+![image](https://github.com/Prashant-Aher/WeatherPulse/assets/131543229/5013aabd-35c2-4a5d-bf20-f3334eace5ca)
+
 
 
 
